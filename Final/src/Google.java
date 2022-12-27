@@ -63,6 +63,9 @@ public class Google {
 			try 
 			{
 				String citeUrl = li.select("a").get(0).attr("href");
+				citeUrl = java.net.URLDecoder.decode(citeUrl, "UTF-8");
+				String[] clean = citeUrl.split("&sa");
+				citeUrl = clean[0];
 				String title = li.select("a").get(0).select(".vvjwJb").text();
 				if(title.equals("")) {
 					continue;

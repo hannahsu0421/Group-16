@@ -20,8 +20,13 @@ public class HTMLHandler {
 	
 	ArrayList<String> link = new ArrayList<String>();
 	ArrayList<String> content = new ArrayList<String>();
+	public String searchKeyword;
 	
-	public HTMLHandler(String searchKeyword) throws IOException {
+	public HTML_Handler(String searchKeyword) throws IOException {
+		this.searchKeyword = searchKeyword;
+	}
+	
+	public void import_content() throws IOException {
 		try {
 			link = new Google(searchKeyword).query();
 //			System.out.println(link);
@@ -33,6 +38,8 @@ public class HTMLHandler {
 		for (int i = 0; i < link.size(); i++) {
 			content.add(fetchContent(link.get(i)));
 		}
+		
+		System.out.println(content.get(0));
 	}
 	
 	private ArrayList<String> getContent() {
