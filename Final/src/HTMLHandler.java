@@ -22,15 +22,13 @@ public class HTMLHandler {
 	ArrayList<String> content = new ArrayList<String>();
 	public String searchKeyword;
 	
-	public HTML_Handler(String searchKeyword) throws IOException {
+	public HTMLHandler(String searchKeyword) throws IOException {
 		this.searchKeyword = searchKeyword;
 	}
 	
 	public void import_content() throws IOException {
 		try {
 			link = new Google(searchKeyword).query();
-//			System.out.println(link);
-			System.out.println(link.get(0));
 		} 
 		catch (IOException e) {
 		}
@@ -39,7 +37,8 @@ public class HTMLHandler {
 			content.add(fetchContent(link.get(i)));
 		}
 		
-		System.out.println(content.get(0));
+		System.out.println(fetchSublink(link.get(1), content.get(1)));
+		
 	}
 	
 	private ArrayList<String> getContent() {
@@ -61,26 +60,48 @@ public class HTMLHandler {
 		return retVal;
     }
 	
-	private ArrayList<String> fetchSublink(String content) throws IOException{
-		ArrayList<String> sublink = new ArrayList<String>();
+	private ArrayList<String> fetchSublink(String link , String content) throws IOException{
+		ArrayList<String> sub = new ArrayList<String>();
 		
-		Document doc = Jsoup.parse(content);
-		Elements lis = doc.select("div");
-		lis = lis.select(".kCrYT");
-		for(Element li : lis)
-		{
-			try 
-			{
-				String subUrl = li.select("a").get(0).attr("href");
-				subUrl = subUrl.substring(7);
-				sublink.add(subUrl);
+		int counter = 0;
+		char slash;
+		int where = 0;
+		String concatlink = "1";
+		
+//		判斷網頁是不是子網頁
+		for (int i = 0; i < link.length(); i++) {
+            slash = link.charAt(i);
+            if (slash == '/')
+                counter++;
+            if (counter >= 3) {
+            	where = i;
+            	break;
+            }
+        }
 
-			} catch (IndexOutOfBoundsException e) {
-			}
+//		做出主網頁的網址
+        if (where != 0) {
+        	concatlink = link.substring(0, where);
+        }
+
+		Document doc = Jsoup.parse(content);
+		Elements aLinks = doc.select("a[href]");
+		for(Element element:aLinks){
+			String url =element.attr("href");
 			
+//			挑出開頭不是http或https但又存在href的東西
+			if(!url.contains("http://")&&!url.contains("https://")){ 
+				if (concatlink != "1") {
+					url = concatlink + url; 
+				}
+				else {
+					url = link+url;
+				}
+			}
+			sub.add(url);
 		}
 		
-		return sublink;
+		return sub;
 	}
 		
 	
