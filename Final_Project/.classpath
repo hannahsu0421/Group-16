@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
@@ -17,3 +18,37 @@
 	<classpathentry kind="lib" path="C:/Users/jenny/Desktop/jsoup-1.15.3 .jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7">
+		<attributes>
+			<attribute name="module" value="true"/>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.5"/>
+	<classpathentry kind="lib" path="C:/Users/jenny/Desktop/jsoup-1.15.3 .jar"/>
+	<classpathentry kind="lib" path="C:/Users/hanbi/Downloads/httpcomponents-asyncclient-4.1.5-bin/lib/commons-codec-1.11.jar"/>
+	<classpathentry kind="lib" path="C:/Users/hanbi/Downloads/httpcomponents-asyncclient-4.1.5-bin/lib/commons-logging-1.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/hanbi/Downloads/httpcomponents-asyncclient-4.1.5-bin/lib/httpasyncclient-4.1.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/hanbi/Downloads/httpcomponents-asyncclient-4.1.5-bin/lib/httpasyncclient-cache-4.1.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/hanbi/Downloads/httpcomponents-asyncclient-4.1.5-bin/lib/httpasyncclient-osgi-4.1.5.jar"/>
+	<classpathentry kind="lib" path="C:/Users/hanbi/Downloads/httpcomponents-asyncclient-4.1.5-bin/lib/httpclient-4.5.13.jar"/>
+	<classpathentry kind="lib" path="C:/Users/hanbi/Downloads/httpcomponents-asyncclient-4.1.5-bin/lib/httpclient-cache-4.5.13.jar"/>
+	<classpathentry kind="lib" path="C:/Users/hanbi/Downloads/httpcomponents-asyncclient-4.1.5-bin/lib/httpcore-4.4.15.jar"/>
+	<classpathentry kind="lib" path="C:/Users/hanbi/Downloads/httpcomponents-asyncclient-4.1.5-bin/lib/httpcore-nio-4.4.15.jar"/>
+	<classpathentry kind="lib" path="C:/Users/hanbi/Downloads/阿里巴巴/fastjson-2.0.21.graal.jar"/>
+	<classpathentry kind="lib" path="C:/Users/hanbi/Downloads/阿里巴巴/fastjson2-2.0.21.graal.jar"/>
+	<classpathentry kind="lib" path="C:/Users/hanbi/Downloads/阿里巴巴/fastjson2-extension-2.0.21.graal.jar"/>
+	<classpathentry kind="output" path="build/classes"/>
+</classpath>
+>>>>>>> branch 'master' of https://github.com/hannahsu0421/Group-16.git
