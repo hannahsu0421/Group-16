@@ -12,9 +12,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import main.KeywordList;
+import main.WebList;
+import Google.*;
+
 /**
  * Servlet implementation class TestProject
  */
+@SuppressWarnings("unused")
 @WebServlet("/TestProject")
 public class TestProject extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -26,10 +31,10 @@ public class TestProject extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
+	/**@override
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
@@ -37,29 +42,41 @@ public class TestProject extends HttpServlet {
 		if(request.getParameter("keyword")== null) {
 			String requestUri = request.getRequestURI();
 			request.setAttribute("requestUri", requestUri);
-			//我改了這裡!本來連的檔案是search.jsp
-			request.getRequestDispatcher("NewFile.jsp").forward(request, response);
+			//改了這裡!本來連的檔案是Search.jsp、Travegle.jsp
+			request.getRequestDispatcher("Travegle.jsp").forward(request, response);
 			return;
 		}
-		GoogleQuery google = new GoogleQuery(request.getParameter("keyword"));
-		HashMap<String, String> query = google.query();
 		
-		String[][] s = new String[query.size()][2];
-		request.setAttribute("query", s);
-		int num = 0;
-		for(Entry<String, String> entry : query.entrySet()) {
-		    String key = entry.getKey();
-		    String value = entry.getValue();
-		    s[num][0] = key;
-		    s[num][1] = value;
-		    num++;
+		//這邊要改 
+//		GoogleQuery google = new GoogleQuery();
+		WebList webList;
+		KeywordList keywords = new KeywordList();
+		try {
+			webList = new WebList(request.getParameter("keyword"));
+			webList.countAllWebKeyword(keywords);
+			HashMap<String, String> query = webList.gettWebList();
+			String[][] s = new String[query.size()][2];
+			request.setAttribute("query", s);
+			int num = 0;
+			for(Entry<String, String> entry : query.entrySet()) {
+			    String key = entry.getKey();
+			    String value = entry.getValue();
+			    s[num][0] = key;
+			    s[num][1] = value;
+			    num++;
+			}
+			
+			//TravegleResult.jsp
+			request.getRequestDispatcher("TravegleResult.jsp")
+			 .forward(request, response); 
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		request.getRequestDispatcher("googleitem.jsp")
-		 .forward(request, response); 
 		
 	}
 
-	/**
+	/**@override
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
